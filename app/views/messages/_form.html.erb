@@ -1,0 +1,6 @@
+<%= form_with(model: [room, message]) do |f| %>
+  <div class="flex gap-2">
+    <%= f.text_field :body, autocomplete: false, class: "w-full rounded border-2 border-gray-300" %>
+    <%= f.submit "Send", class: "bg-blue-200 px-4 rounded font-medium hover:bg-blue-300 hover:cursor-pointer" %>
+  </div>
+<% end %>

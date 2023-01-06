@@ -1,31 +1,48 @@
-<div id="chatroom-container" class="flex container mx-auto pt-28 px-32">
+<div id="chatroom-container" class="flex container xl:max-w-6xl mx-auto py-28 gap-14 h-screen">
   <%# side bar %>
-  <div id="side_panel" class="w-[25%] flex flex-col gap-8">
-    <p class="font-semibold text-gray-700 text-2xl border-b-2 border-b-gray-200 pb-5">
-      <%= current_user.email %>
+  <div id="side_panel" class="w-[25%] flex flex-col gap-8 h-full">
+    <p class="font-semibold text-gray-700 text-2xl border-b-2 border-b-gray-300 pb-5">
+      <%= current_user.name %>
     </p>
 
-    <div class="border-b-2 border-b-gray-200 pb-5">
-      <p class="uppercase font-bold text-lg mb-3">Users</p>
-      <%= turbo_stream_from "users" %>
-      <div id="users" class="flex flex-col gap-1">
-        <%= render @users %>
+    <div class="flex flex-col gap-10 justify-around h-full">
+      <div class="">
+        <p class="uppercase font-bold text-lg mb-3">Users</p>
+        <%= turbo_stream_from "users" %>
+        <div id="users" class="flex flex-col gap-2 h-20 py-2 ml-2 overflow-y-auto overflow-x-hidden scrollbar">
+          <%= render @other_users %>
+        </div>
+      </div>
+
+      <div>
+        <p class="uppercase font-bold text-lg mb-3">Rooms</p>
+        <%= turbo_stream_from "rooms" %>
+        <div id="rooms" class="flex flex-col gap-2 h-36 py-2 ml-2 overflow-y-auto overflow-x-hidden scrollbar">
+          <%= render @public_rooms %>
+        </div>
       </div>
     </div>
 
-    <div class="border-b-2 border-b-gray-200 pb-5">
-      <p class="uppercase font-bold text-lg mb-3">Rooms</p>
-      <%= turbo_stream_from "rooms" %>
-      <div id="rooms" class="flex flex-col gap-1">
-        <%= render @rooms %>
-      </div>
+    <div class="pt-5 border-t-2 border-t-gray-300 mt-auto">
+      <%= render 'form' %>
     </div>
-
-    <%= render 'form' %>
   </div>
 
   <%# main room area %>
-  <div class="room-container">
-
+  <div class="room-container w-full border-2 border-gray-300 rounded bg-sky-100">
+    <% if @active_room %>
+      <div class="flex flex-col justify-between h-full">
+        <p class="text-center font-semibold text-2xl bg-blue-400 rounded-t py-2">
+          <%= @active_room.name %>
+        </p>
+        <%= turbo_stream_from @active_room %>
+        <div id="messages" class="flex flex-col gap-4 overflow-y-auto scrollbar p-6">
+          <%= render @messages %>
+        </div>
+        <div class="mt-auto p-2 pt-5">
+          <%= render 'messages/form', room: @active_room, message: @message %>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>

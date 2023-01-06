@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root 'pages#home'
-  resources :rooms
+  resources :rooms do
+    resources :messages
+  end
 
   devise_for :users
   devise_scope :user do
