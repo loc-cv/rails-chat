@@ -1,15 +1,31 @@
-<div class="container mx-auto">
-  <p><%= current_user.email %></p>
+<div id="chatroom-container" class="flex container mx-auto pt-28 px-32">
+  <%# side bar %>
+  <div id="side_panel" class="w-[25%] flex flex-col gap-8">
+    <p class="font-semibold text-gray-700 text-2xl border-b-2 border-b-gray-200 pb-5">
+      <%= current_user.email %>
+    </p>
 
-  <p>Users</p>
-  <%= turbo_stream_from "users" %>
-  <div id="users">
-    <%= render @users %>
+    <div class="border-b-2 border-b-gray-200 pb-5">
+      <p class="uppercase font-bold text-lg mb-3">Users</p>
+      <%= turbo_stream_from "users" %>
+      <div id="users" class="flex flex-col gap-1">
+        <%= render @users %>
+      </div>
+    </div>
+
+    <div class="border-b-2 border-b-gray-200 pb-5">
+      <p class="uppercase font-bold text-lg mb-3">Rooms</p>
+      <%= turbo_stream_from "rooms" %>
+      <div id="rooms" class="flex flex-col gap-1">
+        <%= render @rooms %>
+      </div>
+    </div>
+
+    <%= render 'form' %>
   </div>
 
-  <p>Rooms</p>
-  <%= turbo_stream_from "room" %>
-  <div id="rooms">
-    <%= render @rooms %>
+  <%# main room area %>
+  <div class="room-container">
+
   </div>
 </div>
