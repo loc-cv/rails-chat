@@ -4,7 +4,7 @@
   <% active = "hover:bg-gray-200" %>
 <% end %>
 
-<%= link_to user, data: { turbo: "false" } do %>
+<%= link_to user do %>
   <div class="flex items-center gap-2 p-1 px-2 rounded <%= active %>">
     <div>
       <%= image_tag(user.chat_avatar, class: "rounded-full") %>

@@ -4,7 +4,7 @@
   <% active = "hover:bg-gray-200" %>
 <% end %>
 
-<%= link_to room, data: { turbo: "false" } do %>
+<%= link_to room do %>
   <div class="p-1 px-2 rounded <%= active %>">
     <p class="text-gray-700 font-medium">
       <%= room.name %>
