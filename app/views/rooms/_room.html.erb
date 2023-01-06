@@ -1,3 +1,13 @@
-<div>
-  <%= link_to room.name, room, class: "text-gray-700 font-medium" %>
-</div>
+<% if @active_room && @active_room.id == room.id %>
+  <% active = "bg-blue-200 hover:bg-blue-300" %>
+<% else %>
+  <% active = "hover:bg-gray-200" %>
+<% end %>
+
+<%= link_to room, data: { turbo: "false" } do %>
+  <div class="p-1 px-2 rounded <%= active %>">
+    <p class="text-gray-700 font-medium">
+      <%= room.name %>
+    </p>
+  </div>
+<% end %>

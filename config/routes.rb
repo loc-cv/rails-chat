@@ -4,9 +4,9 @@ Rails.application.routes.draw do
     resources :messages
   end
 
-  devise_for :users
-  devise_scope :user do
-    get :users, to: 'devise/sessions#new'
-  end
+  devise_for :users, controllers: {
+    sessions: 'users/sessions',
+    registrations: 'users/registrations'
+  }
   get 'users/:id', to: 'users#show', as: :user
 end

@@ -12,8 +12,13 @@
 
     <style type="text/css" media="screen">
       <%= ".message-box-#{current_user&.id}" %> {
-        background-color: #bfdbfe;
         align-self: flex-end;
+      }
+      <%= ".message-#{current_user&.id}" %> {
+        background-color: #bfdbfe;
+      }
+      <%= ".avatar-#{current_user&.id}" %> {
+        order: 9999;
       }
     </style>
   </head>

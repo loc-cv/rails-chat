@@ -9,7 +9,7 @@
       <div class="">
         <p class="uppercase font-bold text-lg mb-3">Users</p>
         <%= turbo_stream_from "users" %>
-        <div id="users" class="flex flex-col gap-2 h-20 py-2 ml-2 overflow-y-auto overflow-x-hidden scrollbar">
+        <div id="users" class="flex flex-col gap-2 h-28 py-2 overflow-y-auto overflow-x-hidden scrollbar">
           <%= render @other_users %>
         </div>
       </div>
@@ -17,7 +17,7 @@
       <div>
         <p class="uppercase font-bold text-lg mb-3">Rooms</p>
         <%= turbo_stream_from "rooms" %>
-        <div id="rooms" class="flex flex-col gap-2 h-36 py-2 ml-2 overflow-y-auto overflow-x-hidden scrollbar">
+        <div id="rooms" class="flex flex-col gap-2 h-36 py-2 overflow-y-auto overflow-x-hidden scrollbar">
           <%= render @public_rooms %>
         </div>
       </div>
@@ -42,6 +42,10 @@
         <div class="mt-auto p-2 pt-5">
           <%= render 'messages/form', room: @active_room, message: @message %>
         </div>
+      </div>
+    <% else %>
+      <div class='flex justify-center items-center h-full font-bold text-5xl text-cyan-600'>
+        Let's start messaging!
       </div>
     <% end %>
   </div>

@@ -1,3 +1,16 @@
-<div>
-  <%= link_to user.name, user, class: "text-gray-700 font-medium" %>
-</div>
+<% if @active_room&.participant?(user) %>
+  <% active = "bg-blue-200 hover:bg-blue-300" %>
+<% else %>
+  <% active = "hover:bg-gray-200" %>
+<% end %>
+
+<%= link_to user, data: { turbo: "false" } do %>
+  <div class="flex items-center gap-2 p-1 px-2 rounded <%= active %>">
+    <div>
+      <%= image_tag(user.chat_avatar, class: "rounded-full") %>
+    </div>
+    <p class="text-gray-700 font-medium">
+      <%= user.name %>
+    </p>
+  </div>
+<% end %>
