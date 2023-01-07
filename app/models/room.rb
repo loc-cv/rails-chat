@@ -17,7 +17,7 @@ class Room < ApplicationRecord
   end
 
   def broadcast_if_public
-    broadcast_append_to 'rooms' unless is_private?
+    broadcast_append_to "rooms" unless is_private?
   end
 
   def participant?(user)

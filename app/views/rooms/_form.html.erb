@@ -1,6 +1,11 @@
-<%= form_with(model: @room, data: { controller: "reset-form", action: "turbo:submit-end->reset-form#reset" }) do |f| %>
+<%= form_with model: @room,
+              data: { controller: "reset-form", action: "turbo:submit-end->reset-form#reset" }  do |f| %>
   <div class="flex justify-between gap-2">
-    <%= f.text_field :name, autocomplete: "off", class: "rounded w-full" %>
-    <%= f.submit "Create room", :disable_with => false, class: "p-2 px-4 bg-indigo-200 hover:bg-indigo-300 rounded text-sm hover:cursor-pointer" %>
+    <%= f.text_field :name,
+                      autocomplete: "off",
+                      class: "rounded w-full" %>
+    <%= f.submit "Create room",
+                  disable_with: false,
+                  class: "p-2 px-4 bg-indigo-200 hover:bg-indigo-300 rounded text-sm hover:cursor-pointer" %>
   </div>
 <% end %>

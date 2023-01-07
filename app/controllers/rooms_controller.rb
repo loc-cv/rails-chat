@@ -3,7 +3,8 @@ class RoomsController < ApplicationController
 
   before_action :authenticate_user!
 
-  def index; end
+  def index
+  end
 
   def show
     @active_room = Room.find(params[:id])
